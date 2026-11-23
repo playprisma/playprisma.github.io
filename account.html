@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your account · Prisma</title>
+<meta name="description" content="Manage your Prisma account.">
+<meta name="theme-color" content="#0a0406">
+<meta property="og:title" content="Your account · Prisma">
+<meta property="og:description" content="Manage your Prisma account.">
+<link rel="icon" href="assets/icon-64.png" type="image/png">
+<link rel="stylesheet" href="style.css?v=3">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
+<script src="config.js" defer></script>
+<script src="app.js?v=3" defer></script>
+</head>
+<body data-page="account">
+<header class="site"></header>
+<main>
+<div class="wrap page">
+  <h1>Your account</h1><p class="muted">Manage your Prisma account and synced presets.</p>
+  <div id="msg" class="msg" hidden role="alert" style="margin-top:24px"></div>
+  <div id="acct" hidden>
+  <div class="acct">
+    <div class="card">
+      <h2>Profile</h2>
+      <div class="kv"><span>Email</span><b id="email"></b></div>
+      <div class="kv"><span>Member since</span><b id="since"></b></div>
+      <div class="actions"><button class="btn btn-ghost" id="logout">Log out</button></div>
+    </div>
+    <div class="card">
+      <h2>Preset sync</h2>
+      <p class="status" id="syncStatus"><i></i>Checking…</p>
+      <p class="muted" id="syncWhen" style="margin:8px 0 18px;font-size:14px"></p>
+      <div class="actions"><a class="btn btn-ghost" data-dl href="download.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg> Get the app</a><button class="btn btn-ghost" id="export">Export my data</button></div>
+    </div>
+    <div class="card">
+      <h2>Change password</h2>
+      <form id="pwForm">
+        <div id="pwMsg" class="msg" hidden role="alert"></div>
+        <label>New password<input type="password" name="password" autocomplete="new-password" minlength="8" required></label>
+        <label>Confirm new password<input type="password" name="confirm" autocomplete="new-password" required></label>
+        <button class="btn" type="submit">Update password</button>
+      </form>
+    </div>
+    <div class="card danger-zone">
+      <h2>Delete account</h2>
+      <p class="muted" style="font-size:15px;margin-bottom:18px">Permanently deletes your account and all synced presets. This can't be undone. The Prisma app keeps working offline without an account.</p>
+      <button class="btn btn-danger" id="delete">Delete my account</button>
+    </div>
+  </div>
+  </div>
+</div>
+<dialog id="delDialog">
+  <h3>Delete your account?</h3>
+  <p class="muted" style="margin-bottom:16px;font-size:15px">Your account and synced presets will be permanently erased. Type <b>DELETE</b> to confirm.</p>
+  <div id="delMsg" class="msg" hidden></div>
+  <form method="dialog" onsubmit="return false"><input type="text" id="delInput" autocomplete="off" placeholder="DELETE">
+  <div class="actions"><button type="button" class="btn btn-danger" id="delConfirm" disabled>Delete forever</button><button type="button" class="btn btn-ghost" id="delCancel">Cancel</button></div></form>
+</dialog>
+</main>
+<footer class="site"></footer>
+</body>
+</html>

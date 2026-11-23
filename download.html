@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Download Prisma for Windows</title>
+<meta name="description" content="Download the latest Prisma installer for Windows.">
+<meta name="theme-color" content="#0a0406">
+<meta property="og:title" content="Download Prisma for Windows">
+<meta property="og:description" content="Download the latest Prisma installer for Windows.">
+<link rel="icon" href="assets/icon-64.png" type="image/png">
+<link rel="stylesheet" href="style.css?v=3">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
+<script src="config.js" defer></script>
+<script src="app.js?v=3" defer></script>
+</head>
+<body data-page="download">
+<header class="site"></header>
+<main>
+<div class="wrap page">
+  <h1>Download Prisma</h1><p class="muted">One installer, everything included.</p>
+  <div class="card dl-card">
+    <div>
+      <div class="dl-title grad">Prisma</div>
+      <p class="muted">Latest version</p>
+      <div class="ver grad" data-version>&nbsp;</div>
+      <p class="muted" style="margin:6px 0 26px">Released <span id="relDate">–</span></p>
+      <a class="btn btn-lg" data-dl href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg> Download Prisma-Setup.exe</a>
+      <p class="msg info" id="dlGate" hidden style="margin-top:14px">You need a free account to download and use Prisma. <a href="signup.html">Create one</a> or <a href="login.html?next=download.html">log in</a>.</p>
+      <p class="muted" style="margin-top:14px;font-size:14px">Hosted on GitHub Releases · <a id="relLink" href="https://github.com/" rel="noopener">View release</a></p>
+    </div>
+    <div class="facts">
+      <div><span class="muted">File</span><b>Prisma-Setup.exe</b></div>
+      <div><span class="muted">Size</span><b id="relSize">2.6 MB</b></div>
+      <div><span class="muted">System</span><b>Windows 10 / 11 (64-bit)</b></div>
+      <div><span class="muted">GPU</span><b>NVIDIA GeForce</b></div>
+      <div id="hashRow" hidden><span class="muted">SHA-256</span><code id="relHash"></code></div>
+    </div>
+  </div>
+  <div class="acct">
+    <div class="card">
+      <h2>Install in three steps</h2>
+      <ul class="ticks"><li>Run <b>Prisma-Setup.exe</b> and follow the installer.</li><li>If Windows SmartScreen appears, click <b>More info → Run anyway</b>.</li><li>Open Prisma and sign in to sync your presets (optional).</li></ul>
+    </div>
+    <div class="card" id="notesCard" hidden><h2>What's new</h2><div class="notes" id="notes"></div></div>
+  </div>
+</div>
+</main>
+<footer class="site"></footer>
+</body>
+</html>

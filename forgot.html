@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reset password · Prisma</title>
+<meta name="description" content="Reset your Prisma password.">
+<meta name="theme-color" content="#0a0406">
+<meta property="og:title" content="Reset password · Prisma">
+<meta property="og:description" content="Reset your Prisma password.">
+<link rel="icon" href="assets/icon-64.png" type="image/png">
+<link rel="stylesheet" href="style.css?v=3">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
+<script src="config.js" defer></script>
+<script src="app.js?v=3" defer></script>
+</head>
+<body data-page="forgot">
+<header class="site"></header>
+<main>
+<div class="wrap auth"><div class="card"><h1>Forgot your password?</h1><p class="sub">Enter your email and we'll send you a link to choose a new one.</p>
+<div id="msg" class="msg" hidden role="alert"></div>
+<form id="form">
+  <label>Email<input type="email" name="email" autocomplete="email" required></label>
+  <button class="btn" type="submit">Send reset link</button>
+</form>
+<p class="alt"><a href="login.html">Back to log in</a></p></div></div>
+</main>
+<footer class="site"></footer>
+</body>
+</html>

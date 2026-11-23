@@ -1,0 +1,22 @@
+<svg viewBox="0 0 1600 900" width="1600" height="900" xmlns="http://www.w3.org/2000/svg" aria-label="Sample game scene">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b2a8f"/><stop offset=".45" stop-color="#d9468a"/><stop offset=".75" stop-color="#ff9a52"/></linearGradient>
+<linearGradient id="lake" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff8a5c"/><stop offset=".35" stop-color="#2a7fc4"/><stop offset="1" stop-color="#123d74"/></linearGradient>
+<radialGradient id="sun"><stop offset="0" stop-color="#fff6c2"/><stop offset=".5" stop-color="#ffd25e"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1600" height="900" fill="url(#sky)"/>
+<circle cx="1050" cy="470" r="260" fill="url(#sun)"/><circle cx="1050" cy="470" r="95" fill="#ffe08a"/>
+<path d="M0 520 210 330 380 450 560 260 790 470 960 340 1180 480 1380 300 1600 460V600H0z" fill="#6c3fb0"/>
+<path d="M0 560 160 450 330 540 520 400 700 560 900 430 1100 560 1300 420 1600 560V620H0z" fill="#46288a"/>
+<path d="M0 600h1600v300H0z" fill="url(#lake)"/>
+<ellipse cx="1050" cy="640" rx="160" ry="10" fill="#ffe08a" opacity=".55"/><ellipse cx="1050" cy="680" rx="100" ry="6" fill="#ffe08a" opacity=".35"/>
+<path d="M0 640C220 610 420 650 600 700 720 735 760 900 760 900H0z" fill="#1f8a5b"/>
+<path d="M1600 660C1400 650 1250 700 1150 760 1080 800 1060 900 1060 900H1600z" fill="#18774e"/>
+<g fill="#0f4d33">
+<path d="m80 650 40-120 40 120z"/><path d="m150 660 48-150 48 150z"/><path d="m250 668 36-105 36 105z"/><path d="m340 680 44-130 44 130z"/><path d="m60 760 52-160 52 160z"/><path d="m200 790 60-190 60 190z"/>
+<path d="m1260 720 46-140 46 140z"/><path d="m1360 700 54-170 54 170z"/><path d="m1470 710 44-135 44 135z"/><path d="m1400 820 62-190 62 190z"/>
+</g>
+<path d="M520 900 760 640h40L700 900z" fill="#c9a06b" opacity=".9"/>
+<g><rect x="470" y="600" width="90" height="62" fill="#f4f1ea"/><path d="m460 604 55-42 55 42z" fill="#d6453d"/><rect x="503" y="626" width="22" height="36" fill="#7a4a2a"/><rect x="480" y="614" width="16" height="14" fill="#ffd25e"/></g>
+<g fill="#fff" opacity=".85"><path d="M250 150h120a30 30 0 0 0-60-20 40 40 0 0 0-60 20z"/><path d="M1300 110h150a35 35 0 0 0-70-24 46 46 0 0 0-80 24z"/></g>
+</svg>

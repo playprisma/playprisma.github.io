@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Create account · Prisma</title>
+<meta name="description" content="Create a Prisma account to sync your presets.">
+<meta name="theme-color" content="#0a0406">
+<meta property="og:title" content="Create account · Prisma">
+<meta property="og:description" content="Create a Prisma account to sync your presets.">
+<link rel="icon" href="assets/icon-64.png" type="image/png">
+<link rel="stylesheet" href="style.css?v=3">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
+<script src="config.js" defer></script>
+<script src="app.js?v=3" defer></script>
+</head>
+<body data-page="signup">
+<header class="site"></header>
+<main>
+<div class="wrap auth"><div class="card"><h1>Create your account</h1><p class="sub">One account for the website and the Prisma app.</p>
+<div id="msg" class="msg" hidden role="alert"></div>
+<form id="form">
+  <label>Email<input type="email" name="email" autocomplete="email" required></label>
+  <label>Password<input type="password" name="password" autocomplete="new-password" minlength="8" required placeholder="At least 8 characters"></label>
+  <label>Confirm password<input type="password" name="confirm" autocomplete="new-password" required></label>
+  <label class="check"><input type="checkbox" name="terms" required><span>I agree to the <a href="terms.html">Terms</a> and have read the <a href="privacy.html">Privacy policy</a>.</span></label>
+  <button class="btn" type="submit">Create account</button>
+</form>
+<div id="done" hidden><div class="msg ok">Almost there! We sent a confirmation link to <b id="doneEmail"></b>. Click it to activate your account, then log in here or in the app.</div><p class="alt">Didn't get it? Check spam, or <a href="login.html">log in</a> to resend.</p></div>
+<p class="alt">Already have an account? <a href="login.html">Log in</a></p></div></div>
+</main>
+<footer class="site"></footer>
+</body>
+</html>

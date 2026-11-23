@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Log in · Prisma</title>
+<meta name="description" content="Log in to your Prisma account.">
+<meta name="theme-color" content="#0a0406">
+<meta property="og:title" content="Log in · Prisma">
+<meta property="og:description" content="Log in to your Prisma account.">
+<link rel="icon" href="assets/icon-64.png" type="image/png">
+<link rel="stylesheet" href="style.css?v=3">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
+<script src="config.js" defer></script>
+<script src="app.js?v=3" defer></script>
+</head>
+<body data-page="login">
+<header class="site"></header>
+<main>
+<div class="wrap auth"><div class="card"><h1>Welcome back</h1><p class="sub">Log in with the same account you use in the app.</p>
+<div id="msg" class="msg" hidden role="alert"></div>
+<form id="form">
+  <label>Email<input type="email" name="email" autocomplete="email" required></label>
+  <label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+  <div class="row-between"><span></span><a href="forgot.html">Forgot password?</a></div>
+  <button class="btn" type="submit">Log in</button>
+</form>
+<p class="alt">New to Prisma? <a href="signup.html">Create an account</a></p></div></div>
+</main>
+<footer class="site"></footer>
+</body>
+</html>

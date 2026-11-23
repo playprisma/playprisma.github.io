@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reviews · Prisma</title>
+<meta name="description" content="What Prisma users say.">
+<meta name="theme-color" content="#0a0406">
+<meta property="og:title" content="Reviews · Prisma">
+<meta property="og:description" content="What Prisma users say.">
+<link rel="icon" href="assets/icon-64.png" type="image/png">
+<link rel="stylesheet" href="style.css?v=3">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
+<script src="config.js" defer></script>
+<script src="app.js?v=3" defer></script>
+</head>
+<body data-page="reviews">
+<header class="site"></header>
+<main>
+<div class="wrap page">
+  <h1>Reviews</h1><p class="muted">Written by real Prisma users. You need an account to write one.</p>
+  <div class="card rv-form" id="rvBox" style="margin-top:28px">
+    <div id="rvMsg" class="msg" hidden></div>
+    <form id="rvForm" hidden>
+      <label>Name shown on your review<input type="text" name="name" maxlength="32" required></label>
+      <label>Your review<textarea name="body" maxlength="300" minlength="3" rows="3" required></textarea></label>
+      <button class="btn" type="submit">Post review</button>
+    </form>
+    <p id="rvLogin" class="muted" hidden><a href="login.html?next=reviews.html">Log in</a> or <a href="signup.html">create an account</a> to write a review.</p>
+    <p id="rvMine" class="muted" hidden>Thanks for your review! <button class="lnk2" id="rvDel">Delete my review</button></p>
+  </div>
+  <div class="rv-grid" id="rvGrid"></div>
+  <p class="muted" id="rvEmpty" hidden style="text-align:center;margin-top:30px">No reviews yet. Be the first!</p>
+</div>
+</main>
+<footer class="site"></footer>
+</body>
+</html>

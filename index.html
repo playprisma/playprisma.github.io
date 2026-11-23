@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prisma: colour, overlays and game profiles for NVIDIA</title>
+<meta name="description" content="Prisma is a Windows game toolkit for NVIDIA GPUs: colour and vibrance, presets, crosshair and performance overlays, per-game profiles and more.">
+<meta name="theme-color" content="#0a0406">
+<meta property="og:title" content="Prisma: colour, overlays and game profiles for NVIDIA">
+<meta property="og:description" content="Prisma is a Windows game toolkit for NVIDIA GPUs: colour and vibrance, presets, crosshair and performance overlays, per-game profiles and more.">
+<link rel="icon" href="assets/icon-64.png" type="image/png">
+<link rel="stylesheet" href="style.css?v=3">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js" defer></script>
+<script src="config.js" defer></script>
+<script src="app.js?v=3" defer></script>
+</head>
+<body data-page="home">
+<header class="site"></header>
+<main>
+<div class="wrap">
+  <section class="hero">
+    <div>
+      <span class="pill" id="newPill" hidden><b>New</b> <span data-version></span> is out</span>
+      <h1 class="grad">Prisma</h1>
+      <p class="lead">Make every game look exactly how you want. Colour and vibrance control, a crosshair and performance overlay, and per-game profiles in one toolkit for NVIDIA GPUs on Windows.</p>
+      <div class="cta">
+        <a class="btn btn-lg" data-dl href="download.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg> Download for Windows</a>
+        <a class="btn btn-lg btn-ghost" href="demo.html">Try the demo</a>
+      </div>
+      <p class="meta">Windows 10/11 · NVIDIA GPU required · <a href="signup.html">Create a free account</a></p>
+    </div>
+    <div class="mock" aria-hidden="true">
+      <div class="bar"><i></i><i></i><i></i></div>
+      <div class="body">
+        <aside><span class="on">Colour</span><span>Presets</span><span>Profiles</span><span>Crosshair</span><span>Overlay</span><span>Optimizer</span></aside>
+        <div class="panel">
+          <div class="row">Vibrance<div class="track"><b style="width:78%"></b></div>78%</div>
+          <div class="row">Brightness<div class="track"><b style="width:52%"></b></div>52%</div>
+          <div class="row">Contrast<div class="track"><b style="width:60%"></b></div>60%</div>
+          <div class="row">Gamma<div class="track"><b style="width:45%"></b></div>1.0</div>
+          <div class="chips"><span class="on">Competitive</span><span>Cinematic</span><span>Night</span><span>+ New</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head"><h2>Everything in one place</h2><p class="muted">Prisma brings the tweaks you'd normally hunt for in five different apps into one fast, good-looking app. <a href="features.html">See every feature →</a></p></div>
+    <div class="grid">
+      <div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg></div><h3>Colour &amp; vibrance</h3><p>Dial in digital vibrance, brightness, contrast and gamma so games pop without touching the NVIDIA Control Panel.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></div><h3>Presets</h3><p>Save your favourite looks and switch between them in one click, or start from built-in presets.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h10M4 19h6"/><circle cx="18" cy="16" r="3"/></svg></div><h3>Per-game profiles</h3><p>Prisma notices which game is running and applies its profile automatically, then restores your desktop.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/></svg></div><h3>Crosshair overlay</h3><p>A clean, customisable crosshair drawn on top of any game: shape, size, colour and gap.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 5-7 4 5"/><path d="M3 21h18"/></svg></div><h3>CPU / GPU overlay</h3><p>Live temps, load, clocks and FPS-friendly stats in a small corner overlay you can place anywhere.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Windows optimizer</h3><p>One-click tweaks that trim background clutter and set Windows up for smoother, lower-latency gaming.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></div><h3>Hotkeys</h3><p>Toggle presets, overlays and the crosshair mid-match without alt-tabbing.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9c0-1.1-.9-1.5-1.7-1.2A4 4 0 0 1 14 6.5c0-.9-.4-1.6-1.3-2z"/></svg></div><h3>Themes</h3><p>Black and crimson by default, with themes to make the app look the way you like.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a4 4 0 0 0 0-8 6 6 0 0 0-11.6 1.5A3.5 3.5 0 0 0 6.5 18z"/><path d="m9 14 2 2 4-4"/></svg></div><h3>Account sync</h3><p>Sign in to back up your presets and profiles and bring them to a new PC.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="screenshots">
+  <div class="wrap">
+    <div class="sec-head"><h2>See it in action</h2><p class="muted">A clean, dark interface that stays out of your way.</p></div>
+    <div class="shots">
+      <figure class="shot">Screenshot 1<img src="assets/screenshots/1.png" alt="Prisma colour controls" loading="lazy" onerror="this.remove()"><figcaption>Colour &amp; vibrance</figcaption></figure>
+      <figure class="shot">Screenshot 2<img src="assets/screenshots/2.png" alt="Prisma crosshair editor" loading="lazy" onerror="this.remove()"><figcaption>Crosshair overlay</figcaption></figure>
+      <figure class="shot">Screenshot 3<img src="assets/screenshots/3.png" alt="Prisma per-game profiles" loading="lazy" onerror="this.remove()"><figcaption>Per-game profiles</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Ready to see your games differently?</h2>
+      <p class="muted">One small installer. No bloat. Free account for syncing your presets.</p>
+      <div class="actions" style="justify-content:center"><a class="btn btn-lg" data-dl href="download.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg> Download Prisma</a><a class="btn btn-lg btn-ghost" href="demo.html">Try the demo</a></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site"></footer>
+</body>
+</html>
