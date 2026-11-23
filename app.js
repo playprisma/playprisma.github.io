@@ -8,7 +8,7 @@
   const qp = new URLSearchParams(location.search);
   const hp = new URLSearchParams(location.hash.slice(1));
   const linkError = hp.get("error_description") || qp.get("error_description");
-  const DL_FALLBACK = `https://github.com/${C.GITHUB_REPO}/releases/latest/download/Prisma-Setup.exe`;
+  const DL_FALLBACK = "downloads/Prisma-Setup.exe";
   const DL_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg>';
 
   const msg = (el, text, type = "err") => { el.innerHTML = ""; el.append(text); el.className = "msg " + type; el.hidden = !text; };
@@ -50,16 +50,9 @@
 
   // ---------- GitHub release ----------
   async function latestRelease() {
-    const k = "prisma-release";
-    try { const c = JSON.parse(sessionStorage.getItem(k)); if (c && Date.now() - c.t < 6e5) return c.r; } catch {}
-    const res = await fetch(`https://api.github.com/repos/${C.GITHUB_REPO}/releases/latest`, { headers: { Accept: "application/vnd.github+json" } });
-    if (!res.ok) throw new Error("GitHub " + res.status);
-    const j = await res.json();
-    const a = (j.assets || []).find((x) => x.name.toLowerCase() === "prisma-setup.exe");
-    const r = { tag: j.tag_name, date: j.published_at, url: j.html_url, notes: (j.body || "").trim(),
-      asset: a && { url: a.browser_download_url, size: a.size, digest: a.digest || "" } };
-    try { sessionStorage.setItem(k, JSON.stringify({ t: Date.now(), r })); } catch {}
-    return r;
+    const t = await (await fetch("version.txt?t=" + Date.now(), { cache: "no-store" })).text();
+    const v = t.split("\n")[0].trim().replace(/^v/i, "");
+    return { tag: "V" + v, date: "2026-11-23", url: "download.html", notes: "", asset: { url: "downloads/Prisma-Setup.exe", size: 2761079, digest: "sha256:4403b232bac116f28eda98b5867ba6404b67d9e50fe4b075eac191cce9868de4" } };
   }
   const dlLinks = document.querySelectorAll("[data-dl]");
   dlLinks.forEach((a) => (a.href = DL_FALLBACK));
