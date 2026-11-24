@@ -52,7 +52,7 @@
   async function latestRelease() {
     const t = await (await fetch("version.txt?t=" + Date.now(), { cache: "no-store" })).text();
     const v = t.split("\n")[0].trim().replace(/^v/i, "");
-    return { tag: "V" + v, date: "2026-11-24", url: "download.html", notes: "", asset: { url: "downloads/Prisma-Setup.exe", size: 2761426, digest: "sha256:213c7315af9fce9275bad758fbfd3986b3fbfff1dc3ca3af805ddd03b7fde324" } };
+    return { tag: "V" + v, date: "2026-11-24", url: "download.html", notes: "", asset: { url: "downloads/Prisma-Setup.exe", size: 2763133, digest: "sha256:c833397e42d1839b33dd87e584989a5fe4b8cd8a4b92f08ab7b1e81468203c2e" } };
   }
   const dlLinks = document.querySelectorAll("[data-dl]");
   dlLinks.forEach((a) => (a.href = DL_FALLBACK));
