@@ -723,7 +723,7 @@
   }
   function showPage(i) {
     page = i; pages.forEach((p, k) => (p.style.display = k === i ? "" : "none"));
-    title.textContent = pageNames[i];
+    title.textContent = pageNames[i] + (i === 3 ? " (optional)" : "");
     [d1, allBtn, addBtn, loadBtn].forEach((b) => (b.style.display = i === 0 ? "" : "none"));
     setLay(i !== 0);
     if (i === 4) aboutLayout();
