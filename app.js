@@ -20,33 +20,24 @@
   const bytes = (n) => (n / 1048576).toFixed(1) + " MB";
 
   // ---------- layout ----------
-  const nav = [["index.html", "Home", "home", "nav-home"], ["features.html", "Features", "features", "hide-sm"], ["demo.html", "Try demo", "demo", ""], ["reviews.html", "Reviews", "reviews", "hide-sm"], ["download.html", "Download", "download", "hide-sm"]].filter(([, , p]) => p !== "download");
+  const nav = [["features.html", "Features", "features", "hide-sm"], ["demo.html", "Demo", "demo", ""], ["reviews.html", "Reviews", "reviews", "hide-sm"]];
   const header = $("header.site");
-  if (header) header.innerHTML = `<div class="wrap"><a class="brand" href="index.html"><img src="assets/icon-64.png" alt="">Prisma</a><nav>
-    ${nav.map(([h, t, p, c]) => `<a href="${h}" class="${c} ${p === page ? "active" : ""}">${t}</a>`).join("")}
-    <a id="authLink" href="login.html" class="${["login", "signup", "account"].includes(page) ? "active" : ""}">Log in</a>
+  if (header) {
+    header.innerHTML = `<div class="wrap"><a class="brand" href="index.html"><img src="assets/icon-64.png" alt=""><span>Prisma</span></a><nav>
+    ${nav.map(([h, t, p, c]) => `<a href="${h}" class="${c} ${p === page ? "active" : ""}">${t}</a>`).join("")}<span class="sp"></span>
+    <a id="authLink" href="login.html" class="hide-sm ${["login", "signup", "account"].includes(page) ? "active" : ""}">Sign in</a>
     <a class="btn btn-sm" href="download.html">Download</a></nav></div>`;
+    addEventListener("scroll", () => header.classList.toggle("scrolled", scrollY > 10), { passive: true });
+  }
   const footer = $("footer.site");
-  if (footer) footer.innerHTML = `<div class="wrap"><span>© ${new Date().getFullYear()} Prisma. Not affiliated with NVIDIA.</span>
-    <div class="links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="https://github.com/${C.GITHUB_REPO}" rel="noopener">GitHub</a></div></div>`;
+  if (footer) footer.innerHTML = `<div class="wrap"><a class="brand" href="index.html"><img src="assets/icon-64.png" alt="">Prisma</a><span>Made by Bertram in Denmark. Not affiliated with NVIDIA.</span>
+    <div class="links"><a href="features.html">Features</a><a href="reviews.html">Reviews</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div>`;
   document.querySelectorAll("[data-cfg]").forEach((el) => { const v = C[el.dataset.cfg]; if (v) { el.textContent = v; if (el.tagName === "A" && v.includes("@")) el.href = "mailto:" + v; } });
   let loggedIn = false;
   const gateDl = () => { return; document.querySelectorAll("[data-dl]").forEach((a) => { a.href = "login.html?next=download.html"; a.title = "Log in to download"; }); const n = $("#dlGate"); if (n) n.hidden = false; };
   if (sb) sb.auth.getSession().then(({ data }) => { if (data.session) { loggedIn = true; const a = $("#authLink"); a.textContent = "Account"; a.href = "account.html"; } gateDl(); });
   if (qp.get("deleted")) toast("Your account and synced data have been deleted.");
 
-  // ---------- scroll reveal ----------
-  const sel = ".fsec > .card, .faq, .card.rv, .chips-l, .rv-form, .demo-note, #prismaWrap, .hero > div > *, .hero .mock, .sec-head, .grid > .card, .shots > .shot, .cta-band, .demo-head,  .page > h1, .page > p, .dl-card, .acct > .card, .auth .card, .legal > *";
-  const els = [...document.querySelectorAll(sel)];
-  if ("IntersectionObserver" in window) {
-    els.forEach((el) => {
-      const sibs = [...el.parentElement.children].filter((c) => c.matches(sel));
-      el.style.setProperty("--d", Math.min(sibs.indexOf(el), 8) * 0.07 + "s");
-      el.classList.add("rv");
-    });
-    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: 0.01, rootMargin: "0px 0px -20px 0px" });
-    requestAnimationFrame(() => els.forEach((el) => io.observe(el)));
-  }
 
   // ---------- GitHub release ----------
   async function latestRelease() {
@@ -228,7 +219,7 @@
     async function load() {
       const { data, error } = await sb.from("reviews").select("id,user_id,name,body,created_at").order("created_at", { ascending: false }).limit(200);
       if (error) return msg(m, "Reviews could not load.");
-      grid.innerHTML = data.map((r) => `<div class="card rv"><span class="rv-tag">✓ Review</span><p>“${esc(r.body)}”</p><div class="rv-who"><i>${esc(r.name[0].toUpperCase())}</i><span><b>${esc(r.name)}</b><small>${new Date(r.created_at).toLocaleDateString(undefined, { dateStyle: "medium" })}</small></span></div></div>`).join("");
+      grid.innerHTML = data.map((r) => `<div class="rcard"><p>“${esc(r.body)}”</p><div class="rv-who"><i>${esc(r.name[0].toUpperCase())}</i><span><b>${esc(r.name)}</b><small>${new Date(r.created_at).toLocaleDateString(undefined, { dateStyle: "medium" })}</small></span></div></div>`).join("");
       $("#rvEmpty").hidden = data.length > 0;
       const mine = session && data.find((r) => r.user_id === session.user.id);
       f.hidden = !session || !!mine; $("#rvLogin").hidden = !!session; $("#rvMine").hidden = !mine;

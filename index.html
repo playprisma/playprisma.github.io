@@ -3,77 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Prisma: colour, overlays and game profiles for NVIDIA</title>
-<meta name="description" content="Prisma is a Windows game toolkit for NVIDIA GPUs: colour and vibrance, presets, crosshair and performance overlays, per-game profiles and more.">
-<meta name="theme-color" content="#0a0406">
-<meta property="og:title" content="Prisma: colour, overlays and game profiles for NVIDIA">
-<meta property="og:description" content="Prisma is a Windows game toolkit for NVIDIA GPUs: colour and vibrance, presets, crosshair and performance overlays, per-game profiles and more.">
+<title>Prisma · 300% colour, crosshair and FPS overlay for Windows</title>
+<meta name="description" content="Prisma is a free 2.6 MB Windows app: colour up to 300%, a custom crosshair, an FPS and ping overlay and 20+ game tweaks. No account needed.">
+<meta name="theme-color" content="#0b0b0d">
+<meta property="og:title" content="Prisma · 300% colour, crosshair and FPS overlay for Windows">
+<meta property="og:description" content="Prisma is a free 2.6 MB Windows app: colour up to 300%, a custom crosshair, an FPS and ping overlay and 20+ game tweaks. No account needed.">
 <link rel="icon" href="assets/icon-64.png" type="image/png">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.119.2/dist/umd/supabase.js" defer></script>
 <script src="config.js" defer></script>
-<script src="app.js?v=5" defer></script>
+<script src="app.js?v=6" defer></script>
 </head>
 <body data-page="home">
 <header class="site"></header>
 <main>
-<div class="wrap">
-  <section class="hero">
-    <div>
-      <span class="pill" id="newPill" hidden><b>New</b> <span data-version></span> is out</span>
-      <h1 class="grad">Prisma</h1>
-      <p class="lead">Make every game look exactly how you want. Colour and vibrance control, a crosshair and performance overlay, and per-game profiles in one toolkit for NVIDIA GPUs on Windows.</p>
-      <div class="cta">
-        <a class="btn btn-lg" data-dl href="download.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg> Download for Windows</a>
-        <a class="btn btn-lg btn-ghost" href="demo.html">Try the demo</a>
-      </div>
-      <p class="meta">Windows 10/11 · NVIDIA GPU required · No account needed</p>
-    </div>
-    <div class="mock" aria-hidden="true">
-      <div class="bar"><i></i><i></i><i></i></div>
-      <div class="body">
-        <aside><span class="on">Colour</span><span>Presets</span><span>Profiles</span><span>Crosshair</span><span>Overlay</span><span>Optimizer</span></aside>
-        <div class="panel">
-          <div class="row">Vibrance<div class="track"><b style="width:78%"></b></div>78%</div>
-          <div class="row">Brightness<div class="track"><b style="width:52%"></b></div>52%</div>
-          <div class="row">Contrast<div class="track"><b style="width:60%"></b></div>60%</div>
-          <div class="row">Gamma<div class="track"><b style="width:45%"></b></div>1.0</div>
-          <div class="chips"><span class="on">Competitive</span><span>Cinematic</span><span>Night</span><span>+ New</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<section id="features">
-  <div class="wrap">
-    <div class="sec-head"><h2>Everything in one place</h2><p class="muted">Prisma brings the tweaks you'd normally hunt for in five different apps into one fast, good-looking app. <a href="features.html">See every feature →</a></p></div>
-    <div class="grid">
-      <div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg></div><h3>Colour &amp; vibrance</h3><p>Dial in digital vibrance, brightness, contrast and gamma so games pop without touching the NVIDIA Control Panel.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></div><h3>Presets</h3><p>Save your favourite looks and switch between them in one click, or start from built-in presets.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h10M4 19h6"/><circle cx="18" cy="16" r="3"/></svg></div><h3>Per-game profiles</h3><p>Prisma notices which game is running and applies its profile automatically, then restores your desktop.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/></svg></div><h3>Crosshair overlay</h3><p>A clean, customisable crosshair drawn on top of any game: shape, size, colour and gap.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 5-7 4 5"/><path d="M3 21h18"/></svg></div><h3>CPU / GPU overlay</h3><p>Live temps, load, clocks and FPS-friendly stats in a small corner overlay you can place anywhere.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Windows optimizer</h3><p>One-click tweaks that trim background clutter and set Windows up for smoother, lower-latency gaming.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></div><h3>Hotkeys</h3><p>Toggle presets, overlays and the crosshair mid-match without alt-tabbing.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9c0-1.1-.9-1.5-1.7-1.2A4 4 0 0 1 14 6.5c0-.9-.4-1.6-1.3-2z"/></svg></div><h3>Themes</h3><p>Black and crimson by default, with themes to make the app look the way you like.</p></div><div class="card feat"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a4 4 0 0 0 0-8 6 6 0 0 0-11.6 1.5A3.5 3.5 0 0 0 6.5 18z"/><path d="m9 14 2 2 4-4"/></svg></div><h3>Account sync (optional)</h3><p>Optionally sign in to back up your presets and profiles and bring them to a new PC.</p></div>
-    </div>
+<section class="hero"><div class="wrap">
+ <div class="top">
+  <div class="in">
+   <p class="new">New in V1.02: shadow boost, night mode and one-click game mode. <a href="#inside">See the tools</a></p>
+   <h1>Turn your game colours up to 300%.</h1>
   </div>
-</section>
-
-<section id="screenshots">
-  <div class="wrap">
-    <div class="sec-head"><h2>See it in action</h2><p class="muted">A clean, dark interface that stays out of your way.</p></div>
-    <div class="shots">
-      <figure class="shot">Screenshot 1<img src="assets/screenshots/1.png" alt="Prisma colour controls" loading="lazy" onerror="this.remove()"><figcaption>Colour &amp; vibrance</figcaption></figure>
-      <figure class="shot">Screenshot 2<img src="assets/screenshots/2.png" alt="Prisma crosshair editor" loading="lazy" onerror="this.remove()"><figcaption>Crosshair overlay</figcaption></figure>
-      <figure class="shot">Screenshot 3<img src="assets/screenshots/3.png" alt="Prisma per-game profiles" loading="lazy" onerror="this.remove()"><figcaption>Per-game profiles</figcaption></figure>
-    </div>
+  <div class="in">
+   <p class="lead">Prisma is a 2.6 MB Windows app with a colour booster, your own crosshair, an FPS and ping overlay and 20+ game tweaks.</p>
+   <div class="ctas"><a class="btn pri" data-dl href="download.html"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download for Windows</a><a class="btn sec" href="demo.html">Try it in your browser</a></div>
+   <p class="meta">Free · Windows 10 and 11 · No account needed</p>
   </div>
-</section>
+ </div>
+ <div class="stage"><div class="shot"><img src="assets/screenshots/hero.png" width="1344" height="901" alt="Prisma colour page: a game picture split into before and after, with saturation, brightness, contrast and gamma sliders"></div></div>
+</div></section>
 
-<section>
-  <div class="wrap">
-    <div class="cta-band">
-      <h2>Ready to see your games differently?</h2>
-      <p class="muted">One small installer. No bloat. No account needed.</p>
-      <div class="actions" style="justify-content:center"><a class="btn btn-lg" data-dl href="download.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 21h16"/></svg> Download Prisma</a><a class="btn btn-lg btn-ghost" href="demo.html">Try the demo</a></div>
-    </div>
-  </div>
-</section>
+<section class="sec" id="inside"><div class="wrap">
+ <div class="sec-head"><h2>Six tools you would normally need six apps for.</h2><p class="muted">Every change can be reset. Click a tool to see its real screen from the app.</p></div>
+ <div class="tour">
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="view"><div class="shot" id="vshot"><img id="vimg" src="assets/features/colour.png" width="1344" height="901" alt="Prisma Colour screen"></div><ul id="vtags"></ul></div>
+ </div>
+</div></section>
+
+<section class="sec" id="demo" style="padding-top:24px"><div class="wrap">
+ <div class="band">
+  <div><h2>Try the whole app before you download it.</h2><p class="muted">The demo is a copy of Prisma that runs on this website. Move the sliders, build a crosshair and turn on the overlay.</p><a class="btn pri" href="demo.html">Open the demo</a></div>
+  <div class="shot"><img src="assets/features/overlay.png" width="1344" height="901" alt="Prisma overlay settings with ping, clock and playtime turned on" loading="lazy"></div>
+ </div>
+</div></section>
+
+<section class="sec" id="faq" style="padding-top:48px"><div class="wrap">
+ <div class="sec-head"><h2>Questions</h2></div>
+ <div class="qa">
+  <div class="q"><h3>Is Prisma free?</h3><p>Yes. Downloading and using it is free. An account is optional and only backs up your looks.</p></div>
+  <div class="q"><h3>Why does Windows show a blue warning?</h3><p>Prisma is not code signed yet, so Windows does not know the publisher. Click More info, then Run anyway.</p></div>
+  <div class="q"><h3>Do I need an NVIDIA card?</h3><p>NVIDIA gets the most out of it. Without one, the colour boost, crosshair, overlay and optimizer still work.</p></div>
+  <div class="q"><h3>How does 300% saturation work?</h3><p>Up to 100% uses your NVIDIA driver. Above that, Prisma adds a Windows colour boost, which shows in windowed and borderless games.</p></div>
+  <div class="q"><h3>Can I undo the changes?</h3><p>Yes. Every slider has a reset, and Undo all in the optimizer puts Windows back.</p></div>
+  <div class="q"><h3>Which languages does it speak?</h3><p>10 languages. You can switch in Settings, and Prisma restarts in the new language.</p></div>
+ </div>
+</div></section>
+
+<div class="final"><div class="wrap"><div class="box">
+ <div><h2>Free, 2.6 MB, ready in a minute.</h2><p class="muted">Windows 10 and 11. No account needed.</p></div>
+ <div class="ctas" style="margin:0"><a class="btn pri" data-dl href="download.html"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download for Windows</a><a class="btn sec" href="demo.html">Try it in your browser</a></div>
+</div></div></div>
+
+<script>
+{
+const T=[
+ ["Colour","Saturation up to 300%, brightness, contrast and gamma for your whole screen. Shadow boost brightens dark corners, night mode cuts blue light.","colour",["Before and after preview","Settings per monitor","Shadow boost","Night mode"]],
+ ["Crosshair","Your own crosshair on top of any game. It never blocks your mouse.","crosshair",["10 built-in crosshairs","Any colour, size and gap","Share codes for friends"]],
+ ["Overlay","FPS, CPU, GPU, RAM, GPU temperature, ping and playtime in a small corner box.","overlay",["Any corner","Text size and opacity","Ping, clock and playtime"]],
+ ["Optimizer","20+ real Windows tweaks. Game mode frees RAM and turns on Game boost in one click.","optimize",["Game mode","Undo all","Says when a restart is needed"]],
+ ["Game profiles","Finds your Steam and Epic games and switches to the right look when one starts.","games",["Find my games","Look and crosshair per game","Play button"]],
+ ["Presets and hotkeys","Save looks and switch them with a key, even in the middle of a match.","binds",["5 built-in looks","Your own hotkeys","Optional cloud backup"]]];
+const tabs=document.getElementById('tabs'),img=document.getElementById('vimg'),shot=document.getElementById('vshot'),tags=document.getElementById('vtags');
+tabs.innerHTML=T.map((t,i)=>`<button class="tab" role="tab" aria-selected="${i==0}" data-i="${i}"><b>${t[0]}</b><span>${t[1]}</span></button>`).join('');
+T.forEach(t=>{const p=new Image();p.src='assets/features/'+t[2]+'.png'});
+function show(i){const t=T[i];[...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',j==i));
+ shot.classList.add('fade');setTimeout(()=>{img.src='assets/features/'+t[2]+'.png';img.alt='Prisma '+t[0]+' screen';tags.innerHTML=t[3].map(x=>`<li>${x}</li>`).join('');shot.classList.remove('fade')},180)}
+tabs.addEventListener('click',e=>{const b=e.target.closest('.tab');if(b)show(+b.dataset.i)});
+tabs.addEventListener('keydown',e=>{const c=[...tabs.children].findIndex(b=>b.getAttribute('aria-selected')=='true');let n=-1;if(e.key=='ArrowDown'||e.key=='ArrowRight')n=(c+1)%T.length;if(e.key=='ArrowUp'||e.key=='ArrowLeft')n=(c+T.length-1)%T.length;if(n>=0){show(n);tabs.children[n].focus();e.preventDefault()}});
+tags.innerHTML=T[0][3].map(x=>`<li>${x}</li>`).join('');
+const hs=document.querySelector('.stage .shot'),hero=document.querySelector('.hero');
+setTimeout(()=>{hs.style.opacity=1;hs.style.animation='none'},1500);
+hero.addEventListener('mousemove',e=>{if(innerWidth<900)return;const r=hero.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;hs.style.transform=`rotateY(${x*-5}deg) rotateX(${y*4}deg)`});
+hero.addEventListener('mouseleave',()=>hs.style.transform='');
+}
+</script>
 </main>
 <footer class="site"></footer>
 </body>
