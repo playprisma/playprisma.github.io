@@ -1,4 +1,4 @@
-// Prisma V1.01 browser replica, ported from Prisma.cs.
+// Prisma V1.02 browser replica, ported from Prisma.cs.
 (() => {
   "use strict";
   const host = document.getElementById("prismaWrap");
@@ -23,8 +23,8 @@
   let L = THEMES[2], themeIdx = 2, rad = 18;
   const R = (h) => Math.min(Math.trunc(h / 2), Math.max(3, Math.trunc(Math.min(h, 36) * rad / 64)));
   const S = { sat: 50, bri: 0, con: 100, gam: 100, def: 50 };
-  const mins = [0, -100, 50, 50], maxs = [100, 100, 150, 200], names = ["Saturation", "Brightness", "Contrast", "Gamma"], keys = ["sat", "bri", "con", "gam"];
-  let filterOn = true, screenOn = false, allMode = false, page = 0, panelOpen = true;
+  const mins = [0, -100, 50, 50], maxs = [300, 100, 150, 200], names = ["Saturation", "Brightness", "Contrast", "Gamma"], keys = ["sat", "bri", "con", "gam"];
+  let shadowOn = false, nightOn = false, filterOn = true, screenOn = false, allMode = false, page = 0, panelOpen = true;
   let animOn = true, soundOn = false, warpOn = true, tourDone = LS.get("tour") === "1";
   const pnames = ["Competitive", "Vivid", "Cinematic", "Night", "Natural"], pvals = { Competitive: [75, 5, 110, 110], Vivid: [85, 0, 115, 100], Cinematic: [60, -5, 120, 90], Night: [55, 20, 95, 130], Natural: [50, 0, 100, 100] };
 
@@ -129,7 +129,7 @@
   const logoSvg = (sz) => `<svg viewBox="0 0 64 64" width="${sz}" height="${sz}"><defs><linearGradient id="lg${sz}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--acc)"/><stop offset="1" style="stop-color:var(--acc2)"/></linearGradient></defs><polygon points="32,3 60,32 32,61 4,32" fill="url(#lg${sz})"/><polygon points="32,3 60,32 32,32" fill="rgba(255,255,255,.35)"/><path d="M4 32H60M32 3V61" stroke="rgba(255,255,255,.59)" stroke-width="2"/></svg>`;
   const logo = box(root, "", 18, 14, 32, 32); logo.innerHTML = logoSvg(32); logo.style.cursor = "pointer";
   const brand = label(root, "P R I S M A", 58, 18, 124, 28, "#fff", 13, true); brand.style.cursor = "pointer";
-  box(root, "bubble", 188, 23, 58, 22).textContent = "V1.01";
+  box(root, "bubble", 188, 23, 58, 22).textContent = "V1.02";
   logo.onclick = brand.onclick = () => showSplashScreen();
   box(root, "streak", 0, 62, 460, 3);
   const capBtn = (x, kind) => { const c = box(root, "cap " + (kind ? "x" : ""), x, 16, 34, 30); radEls.push([c, 30]);
@@ -179,9 +179,12 @@
     label(cp, names[k], x, 4, 110, 22, "#fff", 10);
     vals[k] = label(cp, "", x + 100, 4, 66, 22, ACC, 10, true, "right");
     rbtn(cp, "↺", x + 172, 1, 28, 26, 1, () => bars[k].set(k === 0 ? S.def : k === 1 ? 0 : 100));
-    bars[k] = slider(cp, x - 4, 30, 208, mins[k], maxs[k], S[keys[k]], (v) => { S[keys[k]] = v; vals[k].textContent = fmt(k, v); updatePreview(); applyScreen(); });
+    bars[k] = slider(cp, x - 4, 30, 208, mins[k], maxs[k], S[keys[k]], (v) => { S[keys[k]] = v; vals[k].textContent = fmt(k, v); updatePreview(); applyScreen();
+      if (k === 0 && v > 100) msg.textContent = "Above 100% is extra colour from Windows. It shows in windowed and borderless games, not in exclusive fullscreen." + (screenOn ? "" : " Turn on Whole screen to use it."); });
   }
   const screenT = toggle(cp, "Whole screen: on", "Whole screen: off", 18, 66, 230, 38, false, (v) => { screenOn = v; applyScreen(); updateStatus(); });
+  toggle(cp, "Shadow boost", "Shadow boost", 256, 66, 160, 38, false, (v) => { shadowOn = v; updatePreview(); applyScreen(); msg.textContent = v ? "Shadow boost on. Dark corners are brighter, so enemies are easier to see." : "Shadow boost off."; });
+  toggle(cp, "Night mode", "Night mode", 422, 66, 160, 38, false, (v) => { nightOn = v; updatePreview(); applyScreen(); msg.textContent = v ? "Night mode on. Warmer colours, less blue light for late gaming." : "Night mode off."; });
   rbtn(cp, "Reset this display", 590, 68, 150, 34, 2, () => resetDisplay());
   rbtn(cp, "Reset all displays", 750, 68, 150, 34, 2, () => resetDisplay());
   const status = label(cp, "", 18, 108, 880, 20, "#fff", 9.5, true);
@@ -336,7 +339,7 @@
     "Run Siege in borderless or windowed mode for the most reliable result. Prisma changes your whole display through the driver and Windows, it does not touch the game. Check Ubisoft's rules about colour tools before using it in ranked matches.",
     "Start with Windows opens Prisma minimised when you sign in. Minimising keeps it running as normal. Closing the window leaves your colours applied. Turn Whole screen off first if you want normal colours back.",
     "If saturation does nothing, update your NVIDIA driver and restart Prisma. The message under the sliders shows the exact reason. If colours look wrong, press Reset all displays or turn Whole screen off. Your settings are stored in %APPDATA%\\Prisma.",
-    "Prisma is a small personal project made for gamers who want their games to look and run better. New tools are added all the time. Accounts let you sync your looks to another PC. Version V1.01."];
+    "Prisma is a small personal project made for gamers who want their games to look and run better. New tools are added all the time. Accounts let you sync your looks to another PC. Version V1.02."];
   const aHead = [], aBody = [], aOpen = [];
   aText.forEach((t, i) => {
     const h = rbtn(ab, "", 8, 0, 862, 34, 2, () => { aOpen[i] = !aOpen[i]; aboutLayout(); }); h.classList.add("left", "acc");
@@ -375,7 +378,10 @@
     return c;
   };
   const cards = TW.map(([t, d], i) => card(t, d, (i % 2) * 452, Math.trunc(i / 2) * 100, 444));
-  const rows = TW.length / 2;
+  let rows = TW.length / 2;
+  const gmodeCard = card("Game mode (one click)", "Frees RAM, turns on Game boost and your colours. Press it right before you play.", 0, rows * 100, 896, "Go");
+  gmodeCard.btn.onclick = () => { cards[18].setOn(true); gmodeCard.desc("Freeing memory, one moment..."); setTimeout(() => gmodeCard.desc("Done! Freed 1240 MB of RAM. Game boost and your colours are on. Have fun! (Demo)"), 900); };
+  rows++;
   const cleanCard = card("Clean temp files", "Deletes files older than a day from your own Temp folder. Files in use are skipped.", 0, rows * 100, 896, "Clean");
   const binCard = card("Empty recycle bin", "Permanently deletes everything in your Recycle Bin.", 0, rows * 100 + 100, 896, "Empty");
   const dnsCard = card("Flush DNS cache", "Clears saved network addresses. Can fix odd connection problems.", 0, rows * 100 + 200, 896, "Flush");
@@ -488,22 +494,22 @@
   // overlay
   const ovPanel = bigPanel();
   const [ovhd] = header(ovPanel, "Overlay", "Shows your CPU, GPU and memory use on top of your game. Works in windowed and borderless mode.");
-  let ovOn = false, ovCorner = 1, ovSize = 11, ovOp = 85; const ovShow = { cpu: true, gpu: true, ram: true, temp: true, vram: false, fps: true };
-  toggle(ovhd, "Overlay: on", "Overlay: off", 700, 30, 190, 40, false, (v) => { ovOn = v; ovTick(); });
-  const bd = rpanel(ovPanel, 0, 112, 916, 400);
+  let ovOn = false, ovCorner = 1, ovSize = 11, ovOp = 85; const ovShow = { cpu: true, gpu: true, ram: true, temp: true, vram: false, fps: true, ping: false, clock: false, play: false }; let ovSince = Date.now(), gmSince = Date.now();
+  toggle(ovhd, "Overlay: on", "Overlay: off", 700, 30, 190, 40, false, (v) => { ovOn = v; if (v) ovSince = Date.now(); ovTick(); });
+  const bd = rpanel(ovPanel, 0, 112, 916, 492);
   label(bd, "Position", 18, 12, 200, 20, MUTE, 9.5);
   const ovCb = ["Top left", "Top right", "Bottom left", "Bottom right"].map((n, i) => rbtn(bd, n, 18 + i * 126, 36, 120, 32, 2, () => { ovCorner = i; ovCb.forEach((b, k) => b.classList.toggle("sel", k === i)); ovTick(); }));
   ovCb[1].classList.add("sel");
   label(bd, "Show", 18, 80, 200, 20, MUTE, 9.5);
-  [["CPU use", 18, 104, "cpu"], ["GPU use", 340, 104, "gpu"], ["Memory (RAM)", 18, 150, "ram"], ["GPU temperature", 340, 150, "temp"], ["FPS (needs PresentMon)", 340, 196, "fps"], ["Video memory", 18, 196, "vram"]]
+  [["CPU use", 18, 104, "cpu"], ["GPU use", 340, 104, "gpu"], ["Memory (RAM)", 18, 150, "ram"], ["GPU temperature", 340, 150, "temp"], ["FPS (needs PresentMon)", 340, 196, "fps"], ["Video memory", 18, 196, "vram"], ["Ping (internet)", 18, 242, "ping"], ["Clock", 340, 242, "clock"], ["Playtime", 18, 288, "play"]]
     .forEach(([n, x, y, k]) => mksw(bd, n, x, y, ovShow[k], (v) => { ovShow[k] = v; ovTick(); }));
-  label(bd, "Text size", 18, 254, 90, 24, "#fff", 10);
-  const v1 = label(bd, "11 pt", 430, 254, 70, 24, ACC, 10, true);
-  slider(bd, 120, 252, 300, 9, 24, 11, (v) => { ovSize = v; v1.textContent = v + " pt"; ovTick(); });
-  label(bd, "Opacity", 18, 292, 90, 24, "#fff", 10);
-  const v2 = label(bd, "85%", 430, 292, 70, 24, ACC, 10, true);
-  slider(bd, 120, 290, 300, 30, 100, 85, (v) => { ovOp = v; v2.textContent = v + "%"; ovTick(); });
-  label(bd, "GPU numbers need an NVIDIA driver. FPS needs the free PresentMon.exe (from the PresentMon project on GitHub) placed next to Prisma.exe, and Prisma started as administrator.", 18, 340, 860, 40, MUTE, 9);
+  label(bd, "Text size", 18, 346, 90, 24, "#fff", 10);
+  const v1 = label(bd, "11 pt", 430, 346, 70, 24, ACC, 10, true);
+  slider(bd, 120, 344, 300, 9, 24, 11, (v) => { ovSize = v; v1.textContent = v + " pt"; ovTick(); });
+  label(bd, "Opacity", 18, 384, 90, 24, "#fff", 10);
+  const v2 = label(bd, "85%", 430, 384, 70, 24, ACC, 10, true);
+  slider(bd, 120, 382, 300, 30, 100, 85, (v) => { ovOp = v; v2.textContent = v + "%"; ovTick(); });
+  label(bd, "GPU numbers need an NVIDIA driver. FPS needs the free PresentMon.exe (from the PresentMon project on GitHub) placed next to Prisma.exe, and Prisma started as administrator. Playtime counts from when your game starts (or when the overlay turns on).", 18, 432, 860, 40, MUTE, 9);
   const so = document.createElement("div"); so.className = "prisma-stats"; so.style.display = "none"; document.body.appendChild(so);
   let fps = 0, frames = 0, last = performance.now();
   (function loop(t) { frames++; if (t - last >= 1000) { fps = Math.round((frames * 1000) / (t - last)); frames = 0; last = t; } requestAnimationFrame(loop); })(last);
@@ -519,6 +525,9 @@
     if (ovShow.temp) r.push(["GPU temp", Math.round(sim.temp) + " °C"]);
     if (ovShow.vram) r.push(["VRAM", sim.vram.toFixed(1) + " / 8.0 GB"]);
     if (ovShow.ram) r.push(["RAM", Math.round(sim.ram) + "%"]);
+    if (ovShow.ping) r.push(["Ping", Math.round(18 + Math.random() * 9) + " ms"]);
+    if (ovShow.play) { const m = Math.floor((Date.now() - (gmActive ? gmSince : ovSince)) / 60000); r.push(["Playtime", Math.floor(m / 60) + ":" + String(m % 60).padStart(2, "0")]); }
+    if (ovShow.clock) { const d = new Date(); r.push(["Clock", String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0")]); }
     if (!r.length) r.push(["Nothing selected", ""]);
     so.innerHTML = r.map(([a, b]) => `<span>${a}</span><b>${b}</b>`).join("");
     Object.assign(so.style, { display: "grid", fontSize: pt(ovSize), opacity: ovOp / 100, left: ovCorner & 1 ? "auto" : "14px", right: ovCorner & 1 ? "14px" : "auto", top: ovCorner < 2 ? "14px" : "auto", bottom: ovCorner < 2 ? "auto" : "14px" });
@@ -580,7 +589,7 @@
   const findXh = (n) => { const i = xBN.indexOf(n); return i >= 0 ? xBuilt[i] : xSaved[n] || null; };
   function gameStart(g) {
     const v = pvals[g[1]]; if (!v) return;
-    gmActive = g; gmSnap = { s: [S.sat, S.bri, S.con, S.gam], screen: screenOn, filter: filterOn, xh: null };
+    gmActive = g; gmSince = Date.now(); gmSnap = { s: [S.sat, S.bri, S.con, S.gam], screen: screenOn, filter: filterOn, xh: null };
     setVals(v); screenOn = true; screenT.set(true); filterOn = true; filterT.set(true);
     const gx = findXh(g[2]);
     if (gx) { gmSnap.xh = { x: xh, on: xhOn }; xh = { ...gx, col: gx.col.slice() }; xhOn = true; xhT.set(true); xhSync(); xhChanged(); }
@@ -624,14 +633,23 @@
 
   // preview
   const shots = []; let shot = 0, split = 0.5, rect = null, srcData = null, srcCanvas = null, afterCanvas = null;
-  const lutFor = (bri, con, gam) => { const lut = new Uint8ClampedArray(256), c = con / 100, g = gam / 100, bb = bri / 400; for (let i = 0; i < 256; i++) { let v = Math.max(0, Math.min(1, (i / 255 - 0.5) * c + 0.5 + bb)); lut[i] = Math.round(Math.pow(v, 1 / g) * 255); } return lut; };
+  const curve = (x, bri, con, gam, sh) => { const c = con / 100, g = gam / 100, k = bri / 100; let v;
+    if (c >= 1) { const sm = x * x * (3 - 2 * x), a = Math.min(1, (c - 1) * 2); v = x + (sm - x) * a; } else v = (x - 0.5) * c + 0.5;
+    v = Math.max(0, Math.min(1, v));
+    if (k > 0) v = 1 - Math.pow(1 - v, 1 + k * 1.5); else if (k < 0) v = Math.pow(v, 1 - k * 1.5);
+    if (sh) { const lift = Math.pow(v, 0.55); v = v + (lift - v) * (1 - v) * (1 - v); }
+    return Math.pow(v, 1 / g); };
+  const lutFor = (bri, con, gam, sh, mul) => { const lut = new Uint8ClampedArray(256); for (let i = 0; i < 256; i++) lut[i] = Math.round(curve(i / 255, bri, con, gam, sh) * (mul || 1) * 255); return lut; };
+  const NIGHT = [1, 0.86, 0.6];
+  const satF = () => { let f = S.sat <= 100 ? S.sat / S.def : (100 / S.def) * (1 + (S.sat - 100) / 100); return Math.min(6, f); };
   function updatePreview() {
     if (!srcData) return drawPreview();
-    const sf = filterOn ? Math.min(2.5, S.sat / S.def) : 1, lut = filterOn ? lutFor(S.bri, S.con, S.gam) : lutFor(0, 100, 100);
+    const sf = filterOn ? satF() : 1, lut = filterOn ? lutFor(S.bri, S.con, S.gam, shadowOn) : lutFor(0, 100, 100),
+      lutG = filterOn && nightOn ? lutFor(S.bri, S.con, S.gam, shadowOn, NIGHT[1]) : lut, lutB = filterOn && nightOn ? lutFor(S.bri, S.con, S.gam, shadowOn, NIGHT[2]) : lut;
     const p = srcData.data, o = new ImageData(srcData.width, srcData.height), d = o.data, c = (v) => (v < 0 ? 0 : v > 255 ? 255 : v) | 0;
     for (let i = 0; i < p.length; i += 4) {
       const rd = p[i], gr = p[i + 1], bl = p[i + 2], l = 0.299 * rd + 0.587 * gr + 0.114 * bl;
-      d[i] = lut[c(l + (rd - l) * sf)]; d[i + 1] = lut[c(l + (gr - l) * sf)]; d[i + 2] = lut[c(l + (bl - l) * sf)]; d[i + 3] = 255;
+      d[i] = lut[c(l + (rd - l) * sf)]; d[i + 1] = lutG[c(l + (gr - l) * sf)]; d[i + 2] = lutB[c(l + (bl - l) * sf)]; d[i + 3] = 255;
     }
     afterCanvas.getContext("2d").putImageData(o, 0, 0);
     drawPreview();
@@ -688,10 +706,9 @@
   document.body.appendChild(fsvg);
   function applyScreen() {
     if (!(screenOn && filterOn)) { document.documentElement.style.filter = ""; return; }
-    const s = Math.min(2.5, S.sat / S.def), a = 1 - s, lr = 0.299 * a, lg = 0.587 * a, lb = 0.114 * a;
+    const s = satF(), a = 1 - s, lr = 0.299 * a, lg = 0.587 * a, lb = 0.114 * a;
     document.getElementById("pfm").setAttribute("values", `${lr + s} ${lg} ${lb} 0 0 ${lr} ${lg + s} ${lb} 0 0 ${lr} ${lg} ${lb + s} 0 0 0 0 0 1 0`);
-    const t = Array.from(lutFor(S.bri, S.con, S.gam), (v) => (v / 255).toFixed(4)).join(" ");
-    ["pfr", "pfg", "pfb"].forEach((id) => document.getElementById(id).setAttribute("tableValues", t));
+    ["pfr", "pfg", "pfb"].forEach((id, ch) => document.getElementById(id).setAttribute("tableValues", Array.from(lutFor(S.bri, S.con, S.gam, shadowOn, nightOn ? NIGHT[ch] : 1), (v) => (v / 255).toFixed(4)).join(" ")));
     document.documentElement.style.filter = "url(#prismaScreen)";
   }
   function updateStatus() {
@@ -787,7 +804,7 @@
 
 
   // ---------- Ask Prisma (same answers as the app) ----------
-  const AskK = [["hi", "hello", "hey", "hej"], ["saturation", "vibrance", "not working", "nothing happens", "doesnt work", "does not work"], ["whole screen", "in game", "ingame", "game colour", "game color", "apply"], ["fps", "presentmon", "frames"], ["crosshair", "cross", "share", "code", "import"], ["preset", "look", "save"], ["games", "profile", "auto", "exe", "switch"], ["bind", "hotkey", "shortcut", "key"], ["optimiz", "optimis", "tweak", "undo", "faster", "boost"], ["ban", "anti-cheat", "anticheat", "safe", "allowed", "cheat", "vac"], ["account", "sync", "upload", "download", "cloud", "pc"], ["password", "forgot", "login", "log in", "locked", "tries"], ["reset", "wrong", "weird", "strange", "dark", "bright"], ["theme", "colour of app", "crimson", "round", "custom"], ["start with windows", "startup", "minimis", "minimiz", "boot"], ["lag", "slow", "laggy", "instant"], ["monitor", "display", "screens", "second"], ["uninstall", "remove", "delete prisma"], ["folder", "appdata", "settings file", "where"], ["overlay", "cpu", "gpu", "temp", "ram", "vram", "stats"]], AskA = ["Prisma is a game toolkit for NVIDIA PCs. It changes your screen colours, adds a crosshair and stats overlay, switches looks per game, and has Windows tweaks for smoother games.", "Saturation uses your NVIDIA driver. Update the driver and restart Prisma. The message under the sliders on the Colour tab tells you the exact reason. Brightness, contrast and gamma work even without NVIDIA.", "Turn on Whole screen on the Colour tab. Then your look shows on your real monitor and in your games. Borderless or windowed mode works best.", "FPS needs the free PresentMon.exe (from the PresentMon project on GitHub). Put it next to Prisma.exe, start Prisma as administrator, and turn on FPS on the Overlay tab.", "Go to the Crosshair tab, pick a style or a built-in crosshair, and turn Crosshair on. It shows in windowed and borderless games. Press Copy code to share it. Your friend uses Import code.", "Set the sliders the way you like, open Presets, type a name and press Save look. Click a saved look to use it again. Right-click it to delete it.", "Open the Games tab. Press Find my games to list your Steam and Epic games, or type the program name (for example RainbowSix.exe). Click a look, then press Add game. Prisma switches when the game starts and puts your colours back when it closes.", "Open the Binds tab, click a key box and press your keys together with Ctrl, Alt or Shift, for example Ctrl + Alt + F. Esc cancels.", "The Optimize tab has 20 Windows tweaks for smoother games. Press Optimize all, or turn single tweaks on. Undo all puts everything back.", "Prisma changes your screen colours through your driver and Windows. It does not touch game files. Some games do not allow overlays like a crosshair, so check the game's rules first. You use it at your own risk.", "On the Account tab, Upload saves your looks, crosshairs and game profiles online. On another PC, log in and press Download to get them back.", "Forgot your password? Use Forgot password on the Prisma website and we send you a reset email. After 5 wrong tries you wait 5 minutes. You only need an account to sync your looks.", "If colours look wrong, press Reset all displays on the Colour tab, or turn Whole screen off.", "Open Themes to pick a theme, make your own with Custom, and change how round the corners are with Roundness.", "In Settings you can turn on Start with Windows and Start minimised.", "If Prisma feels laggy, turn on Instant mode in Settings. It turns off all motion.", "Every monitor has its own settings. Use the Display buttons on the Colour tab, or All displays to change them all. After plugging in a monitor, press +.", "Turn Whole screen off first, then go to Windows Settings > Apps > Installed apps > Prisma > Uninstall.", "Your Prisma settings are in %APPDATA%\\Prisma. Settings > Open settings folder opens it.", "The Overlay tab shows CPU, GPU, RAM, GPU temperature and video memory on top of your game. Pick a corner, text size and opacity, then turn Overlay on."];
+  const AskK = [["hi", "hello", "hey", "hej"], ["saturation", "vibrance", "not working", "nothing happens", "doesnt work", "does not work"], ["whole screen", "in game", "ingame", "game colour", "game color", "apply"], ["fps", "presentmon", "frames"], ["crosshair", "cross", "share", "code", "import"], ["preset", "look", "save"], ["games", "profile", "auto", "exe", "switch"], ["bind", "hotkey", "shortcut", "key"], ["optimiz", "optimis", "tweak", "undo", "faster", "boost"], ["ban", "anti-cheat", "anticheat", "safe", "allowed", "cheat", "vac"], ["account", "sync", "upload", "download", "cloud", "pc"], ["password", "forgot", "login", "log in", "locked", "tries"], ["reset", "wrong", "weird", "strange", "dark", "bright"], ["theme", "colour of app", "crimson", "round", "custom"], ["start with windows", "startup", "minimis", "minimiz", "boot"], ["lag", "slow", "laggy", "instant"], ["monitor", "display", "screens", "second"], ["uninstall", "remove", "delete prisma"], ["folder", "appdata", "settings file", "where"], ["overlay", "cpu", "gpu", "temp", "ram", "vram", "stats"]], AskA = ["Prisma is a game toolkit for NVIDIA PCs. It changes your screen colours, adds a crosshair and stats overlay, switches looks per game, and has Windows tweaks for smoother games.", "Up to 100% saturation uses your NVIDIA driver. Above 100% (or without NVIDIA) Prisma adds a Windows colour boost, which shows in windowed and borderless games. If nothing happens, update the driver and restart Prisma. The message under the sliders tells you the exact reason.", "Turn on Whole screen on the Colour tab. Then your look shows on your real monitor and in your games. Borderless or windowed mode works best.", "FPS needs the free PresentMon.exe (from the PresentMon project on GitHub). Put it next to Prisma.exe, start Prisma as administrator, and turn on FPS on the Overlay tab.", "Go to the Crosshair tab, pick a style or a built-in crosshair, and turn Crosshair on. It shows in windowed and borderless games. Press Copy code to share it. Your friend uses Import code.", "Set the sliders the way you like, open Presets, type a name and press Save look. Click a saved look to use it again. Right-click it to delete it.", "Open the Games tab. Press Find my games to list your Steam and Epic games, or type the program name (for example RainbowSix.exe). Click a look, then press Add game. Prisma switches when the game starts and puts your colours back when it closes.", "Open the Binds tab, click a key box and press your keys together with Ctrl, Alt or Shift, for example Ctrl + Alt + F. Esc cancels.", "The Optimize tab has 20 Windows tweaks for smoother games. Press Optimize all, or turn single tweaks on. Undo all puts everything back.", "Prisma changes your screen colours through your driver and Windows. It does not touch game files. Some games do not allow overlays like a crosshair, so check the game's rules first. You use it at your own risk.", "On the Account tab, Upload saves your looks, crosshairs and game profiles online. On another PC, log in and press Download to get them back.", "Forgot your password? Use Forgot password on the Prisma website and we send you a reset email. After 5 wrong tries you wait 5 minutes. You only need an account to sync your looks.", "If colours look wrong, press Reset all displays on the Colour tab, or turn Whole screen off.", "Open Themes to pick a theme, make your own with Custom, and change how round the corners are with Roundness.", "In Settings you can turn on Start with Windows and Start minimised.", "If Prisma feels laggy, turn on Instant mode in Settings. It turns off all motion.", "Every monitor has its own settings. Use the Display buttons on the Colour tab, or All displays to change them all. After plugging in a monitor, press +.", "Turn Whole screen off first, then go to Windows Settings > Apps > Installed apps > Prisma > Uninstall.", "Your Prisma settings are in %APPDATA%\\Prisma. Settings > Open settings folder opens it.", "The Overlay tab shows CPU, GPU, RAM, GPU temperature, video memory, ping, clock and playtime on top of your game. Pick a corner, text size and opacity, then turn Overlay on."];
   const askAnswer = (q) => { q = " " + q.toLowerCase().replace(/'/g, "") + " "; let best = -1, score = 0;
     AskK.forEach((ks, i) => { let sc = 0; ks.forEach((k) => { if (q.includes(k.length <= 3 ? " " + k : k)) sc += k.length; }); if (sc > score) { score = sc; best = i; } });
     return best < 0 ? "Sorry, I do not know that yet. Try asking about saturation, presets, the crosshair, the overlay, FPS, games, binds, themes or your account." : AskA[best]; };
