@@ -71,6 +71,32 @@
   const form = $("#form"), box = $("#msg");
   const needSb = () => { if (sb) return true; if (box) msg(box, "Accounts are not configured yet: add the Supabase anon key in config.js."); if (form) form.querySelector("button").disabled = true; return false; };
 
+  // ---------- download counter + help for phone visitors ----------
+  const isPhone = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+  const ev = (k) => { try { if (sb) sb.rpc("site_event", { p_kind: k, p_mobile: isPhone }).then(() => {}, () => {}); } catch (e) {} };
+  const PC_URL = "https://playprisma.github.io/download.html";
+  function phoneBox(inline) {
+    const html = `<h3>You're on a phone</h3><p class="muted" style="font-size:15px;margin-bottom:18px">Prisma runs on Windows PCs. Send yourself the link and open it on your PC.</p>
+      <div class="actions"><button type="button" class="btn" data-ph="share">Send link to my PC</button><button type="button" class="btn btn-ghost" data-ph="copy">Copy link</button></div>
+      <p class="muted" data-ph-msg style="font-size:14px;margin-top:12px"></p>`;
+    let box;
+    if (inline) { box = document.createElement("div"); box.className = "card"; box.style.margin = "28px 0 0"; box.innerHTML = html; inline.after(box); }
+    else { box = document.createElement("dialog"); box.innerHTML = html + '<div class="actions" style="margin-top:6px"><button type="button" class="btn btn-ghost btn-sm" data-ph="close">Close</button></div>'; document.body.append(box); box.showModal(); }
+    box.addEventListener("click", async (e) => {
+      const b = e.target.closest("[data-ph]"); if (!b) return; const m = box.querySelector("[data-ph-msg]");
+      if (b.dataset.ph === "close") { box.close(); box.remove(); return; }
+      if (b.dataset.ph === "share" && navigator.share) { try { await navigator.share({ title: "Prisma for Windows", text: "Download Prisma on my PC", url: PC_URL }); ev("phone_share"); } catch (e2) {} return; }
+      try { await navigator.clipboard.writeText(PC_URL); m.textContent = "Link copied. Paste it in a chat to yourself."; } catch (e3) { m.textContent = PC_URL; }
+      ev("phone_copy");
+    });
+  }
+  if (isPhone && page === "download") { const h = $(".page > p"); if (h) { phoneBox(h); ev("phone_seen"); } }
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-dl]"); if (!a || !/\.exe(\?|$)/i.test(a.getAttribute("href") || "")) return;
+    if (isPhone) { e.preventDefault(); phoneBox(); ev("phone_seen"); return; }
+    ev("download");
+  });
+
   const pages = {
     async signup() {
       if (!needSb()) return;
